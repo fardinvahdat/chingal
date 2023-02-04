@@ -1,0 +1,16 @@
+@import "./base.css";
+@import url("https://unpkg.com/primeflex@^3/primeflex.css");
+@font-face {
+  font-family: "iranYekan";
+  src: url("@/assets/fonts/IRANYekanMobileMedium.woff2") format("woff");
+}
+:root {
+  --main-background: "#020d25";
+}
+body {
+  font-family: 'iranYekan';
+}
+#login {
+  min-height: 100vh;
+  width: 100vw;
+}

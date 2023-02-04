@@ -1,0 +1,13 @@
+<template>
+  <svg
+    width="20"
+    height="19"
+    viewBox="0 0 20 19"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M20 8.8374V0.837402H13V3.8374H7V0.837402H0V8.8374H7V5.8374H9V15.8374H13V18.8374H20V10.8374H13V13.8374H11V5.8374H13V8.8374H20ZM5 6.8374H2V2.8374H5V6.8374ZM15 12.8374H18V16.8374H15V12.8374ZM15 2.8374H18V6.8374H15V2.8374Z"
+    />
+  </svg>
+</template>
