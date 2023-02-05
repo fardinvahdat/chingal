@@ -20,7 +20,7 @@
   border-radius: 2px;
   box-shadow: 4px 8px 16px 0 rgb(0 0 0 / 10%);
   overflow: hidden;
-  z-index: 99;
+  z-index: 999999999999999999999999999999;
   display: flex;
   align-items: center;
   justify-content: center;

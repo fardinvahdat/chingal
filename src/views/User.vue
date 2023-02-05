@@ -71,7 +71,7 @@
           <div class="input-box col-3">
             <label for="postalCode">کد</label>
             <input
-              type="number"
+              type="text"
               name="postalCode"
               v-model="user.postalCode"
               placeholder="کد"
@@ -182,13 +182,38 @@ const getUser = () => {
   });
 };
 const editUser = async () => {
-  let userObj = user.value;
-  const response = await axios.post(
-    `https://63c2988fe3abfa59bdaf89f6.mockapi.io/users/`,
-    {
-      userObj,
-    }
-  );
+  isLoading.value = true;
+  const id = route.params.id;
+  const url = "https://63c2988fe3abfa59bdaf89f6.mockapi.io/users/";
+  const response = await axios.put(url + id, {
+    avatar: user.value.avatar,
+    city: user.value.city,
+    company: user.value.company,
+    country: user.value.country,
+    createdAt: user.value.createdAt,
+    dateOfBirth: user.value.age,
+    email: user.value.email,
+    id: user.value.id,
+    name: user.value.name,
+    phoneNumber: user.value.phoneNumber,
+    street: user.value.street,
+    zipcode: user.value.postalCode,
+  });
+
+  isLoading.value = false;
+  if (response.status == 200) {
+    toast.add({
+      severity: "success",
+      summary: "موفق",
+      detail: "ویرایش کاربر با موفقیت انجام شد",
+      life: 3000,
+    });
+    setTimeout(() => {
+      router.push({
+        name: "userlist",
+      });
+    }, 500);
+  }
 };
 const deleteUser = () => {
   isLoading.value = true;

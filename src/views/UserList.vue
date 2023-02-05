@@ -151,6 +151,9 @@
 import BaseTable from "@/components/table/BaseTable.vue";
 import AvatarLogo from "@/assets/svg/Avatar.vue";
 import BreadCrumb from "@/components/breadcrumbs/BreadCrumb.vue";
+import Toast from "primevue/toast";
+import { useRouter } from "vue-router";
+import { useToast } from "primevue/usetoast";
 import { ref, onMounted } from "vue";
 import { useUserListStore } from "@/stores/userlist.js";
 import axios from "axios";
@@ -167,6 +170,8 @@ const store = useUserListStore();
 const userList = ref();
 const isLoading = ref(false);
 const isDialogVisible = ref(false);
+const toast = useToast();
+const router = useRouter();
 const user = ref({
   avatar: "",
   name: "",
@@ -192,13 +197,38 @@ const getUserList = async () => {
   isLoading.value = false;
 };
 const addNewUser = async () => {
-  let userObj = user.value;
-  const response = await axios.post(
-    `https://63c2988fe3abfa59bdaf89f6.mockapi.io/users/`,
-    {
-      userObj,
-    }
-  );
+  const url = "https://63c2988fe3abfa59bdaf89f6.mockapi.io/users/";
+  isLoading.value = true;
+  const response = await axios.post(url, {
+    avatar: user.value.avatar,
+    city: user.value.city,
+    company: user.value.company,
+    country: user.value.country,
+    dateOfBirth: user.value.age + "",
+    email: user.value.email,
+    id: user.value.id,
+    name: user.value.name,
+    phoneNumber: user.value.phoneNumber,
+    street: user.value.street,
+    zipcode: user.value.postalCode + "",
+  });
+  isLoading.value = false;
+  if (response.status == 200 || response.status == 201) {
+    toast.add({
+      severity: "success",
+      summary: "موفق",
+      detail: "ساحت کاربر با موفقیت انجام شد",
+      life: 3000,
+    });
+    setTimeout(() => {
+      router.push({
+        name: "user",
+        params: {
+          id: response.data.id,
+        },
+      });
+    }, 500);
+  }
 };
 </script>
 
